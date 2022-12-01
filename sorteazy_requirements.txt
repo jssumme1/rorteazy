@@ -1,0 +1,45 @@
+-----------------------------------------------------------------------------
+REQUIREMENTS FOR SORTEAZY
+-----------------------------------------------------------------------------
+
+Python Packages: os, numpy, astropy, math, glob, tqdm, warnings, photutils, reproject, matplotlib, scipy, PIL
+
+Software: SourceExtractor, EAZY
+
+-----------------------------------------------------------------------------
+INSTALLING SOURCE EXTRACTOR
+-----------------------------------------------------------------------------
+
+https://formulae.brew.sh/formula/sextractor
+
+Easiest way is to install using Homebrew using 
+
+	brew install sextractor
+
+assuming homebrew is already installed.
+
+-----------------------------------------------------------------------------
+INSTALLING EAZY
+-----------------------------------------------------------------------------
+
+https://github.com/gbrammer/eazy-photoz
+
+Install as follows:
+
+	*cd to your preferred install location*
+	git clone https://github.com/gbrammer/eazy-photoz.git eazy-photoz
+	cd eazy-photoz/src
+	make
+
+-----------------------------------------------------------------------------
+REQUIRED EAZY FILES
+-----------------------------------------------------------------------------
+
+FILTER.RES.latest - Contains filter response curves for *lots* of astronomical filters
+
+zphot.translate - Converts catalog columns into variables that correspond to FILTER.RES.latest
+
+zphot.param - Main parameter file for EAZY (edited using eazyMethods.Eazy)
+
+/eazy/eazy-py/eazy-photoz/inputs/OUTPUT - Required output directory for EAZY output files
+
