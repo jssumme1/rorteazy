@@ -13,6 +13,8 @@ __init__() - Splits and reprojects i2d.fits files and prints the field, image di
 		image_dir - directory in which the i2d.fits files are stored
 		file - pattern of filenames of the images (replace the filter with *)        
 		field - field name to put in image and catalog files
+		reproject - whether or not to reproject images (default True)
+		i2d - whether or not input images are i2d.fits files (default True)
 
 		Returns: Nothing, but prints field, image_dir, new file pattern, and zeropoints
 
@@ -23,6 +25,14 @@ bkgsub() - Can be called after go() to subtract the background from the images.
 		size - size of tiles to compute and subtract background from (default 100 pixels)
 
 		Returns: Nothing, but prints field, image_dir, and new file pattern
+		
+tweakwcs() - Aligns images of mismatched WCS and then reprojects them again.
+
+		Arguments:
+		cat_dir - directory to store SExtractor catalogs
+		config_file - absolute file path to SExtractor configuration file
+		ref_filt - filter to match other filters to (default shortest wavelength filter)
+		overwrite - whether or not to overwrite catalogs (default False)
 
 
 ### SExtractor.py
@@ -156,6 +166,11 @@ auto_colors() - assigns colors to each filter from purple (short wavelength) to 
 
 		Arguments: None
 		Returns: prints contribution of each filter to R, G, B (in that order)
+		
+manual_colors() - assigns colors to each filter based on a dictionary input to the method
+
+		Arguments: 
+		color_dict - dictionary with filters (uppercase) as the keys and tuples of (R, G, B) values as values.
 
 make_stamp() - creates a color image stamp to assign levels to the various parameters of Trilogy.
 
