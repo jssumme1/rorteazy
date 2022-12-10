@@ -176,7 +176,14 @@ class SExtractor:
     ### config_file is the path to the source extractor configation file
     ### overwrite=True -- reruns source extractor even if there are preexisting catalogs in the catalog directory
 
-    def sextract(self, config_file, dual=False, overwrite=True): 
+    def sextract(self, config_file, dual=False, overwrite=True, verbose=True):
+        # select verbosity
+        if verbose == True:
+            verbose_type = 'NORMAL'
+        else:
+            verbose_type = 'QUIET'
+
+        # run sextractor for each file
         for i in range(len(self.imfiles)):
             catname = os.path.join(self.cat_dir, f'{self.field}_{list(self.imfiles.keys())[i]}_cat.txt')
             filt = list(self.imfiles.keys())[i]
@@ -194,11 +201,13 @@ class SExtractor:
                 if dual == False:
                     os.system(f'sex {self.imfiles[filt]} -c {config_file} -MAG_ZEROPOINT ' +
                           f'{zp} -CATALOG_NAME {catname} -GAIN {self.exposures[filt]} ' +
-                          f'-WEIGHT_IMAGE {self.whtfiles[filt]} -WEIGHT_TYPE MAP_WEIGHT')
+                          f'-WEIGHT_IMAGE {self.whtfiles[filt]} -WEIGHT_TYPE MAP_WEIGHT')# + 
+                          #f'-VERBOSE_TYPE {verbose_type}')
                 else:
                     os.system(f'sex {self.imfiles[dual]} {self.imfiles[filt]} -c {self.config_file} -MAG_ZEROPOINT ' +
                           f'{zp} -CATALOG_NAME {catname} -GAIN {self.exposures[filt]} ' +
-                          f'-WEIGHT_IMAGE {self.whtfiles[filt]} -WEIGHT_TYPE MAP_WEIGHT')
+                          f'-WEIGHT_IMAGE {self.whtfiles[filt]} -WEIGHT_TYPE MAP_WEIGHT ' + 
+                          f'-VERBOSE_TYPE {verbose_type}')
                 
         print('Source Extractor done!')
         
