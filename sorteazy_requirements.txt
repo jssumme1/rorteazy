@@ -2,7 +2,7 @@
 REQUIREMENTS FOR SORTEAZY
 -----------------------------------------------------------------------------
 
-Python Packages: os, numpy, astropy, math, glob, tqdm, warnings, photutils, reproject, matplotlib, scipy, PIL
+Python Packages: os, numpy, astropy, math, glob, tqdm, warnings, photutils, reproject, matplotlib, scipy, PIL, stwcs, tweakwcs, drizzlepac, shutil
 
 Software: SourceExtractor, EAZY
 
