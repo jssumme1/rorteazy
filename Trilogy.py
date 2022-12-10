@@ -250,6 +250,28 @@ class Trilogy:
         for i, filt in enumerate(self.filters):
             self.rgb_lum_sum += np.array(self.filter_colors[filt])
 
+    ### Method manual_colors
+    ### Alternative to auto_colors
+    ### Filter names should be uppercase and match those in the filenames
+    ### filter colors should be a list of (R, G, B) values
+    ### The numbers in each list describe the filter's contribution to that color channel
+    ### for example, if there are 2 red filters, 3 green, and 4 blue filters, each with a value 
+    ### along the lines of (0, 0, 1) for the dictionary, then each red filter comprises 50% of the red channel,
+    ### each green is 33% of the green channnel, and each blue filter is 25% of the blue channel
+    ### values higher than 1 don't do anything special
+
+    def manual_colors(self, color_dict):
+        self.filter_colors = {}
+        # make filter colors into numpy arrays
+        for filt in self.filters:
+            self.filter_colors[filt] = np.array(color_dict[filt])
+            
+        # get total contribution to each color (R, G, B)    
+        self.rgb_lum_sum = np.zeros(3)
+        for i, filt in enumerate(self.filters):
+            self.rgb_lum_sum += np.array(self.filter_colors[filt])
+            
+
     ### Method make_stamp
     ### makes RGB stamp image (and saves how the colors are made)
 
