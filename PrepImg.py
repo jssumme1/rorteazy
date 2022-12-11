@@ -54,9 +54,10 @@ class PrepImg:
         ### Creates 'sci' and 'wht' files from the i2d images
         if self.i2d == True:
             for input_image in tqdm(self.i2d_img,desc='Saving individual images...'):
-                for i in range(len(input_image.lower())):
-                    if input_image[i] == 'f' and (input_image[i+4] == 'w' or input_image[i+4] == 'm') and input_image[i+1] in '0 1 2 3 4 5 6 7 8 9'.split():
-                        filt = input_image[i:i+5]
+                lowercase_img = os.path.basename(input_image.lower())
+                for i in range(len(lowercase_img)):
+                    if lowercase_img[i] == 'f' and (lowercase_img[i+4] == 'w' or lowercase_img[i+4] == 'm') and lowercase_img[i+1] in '0 1 2 3 4 5 6 7 8 9'.split():
+                        filt = lowercase_img[i:i+5].upper()
                         self.filts.append(filt)
                         break
                 
@@ -87,9 +88,10 @@ class PrepImg:
                 shutil.copy(input_image, new_image)
                 input_image = new_image
 
-                for i in range(len(input_image.lower())):
-                    if input_image[i] == 'f' and (input_image[i+4] == 'w' or input_image[i+4] == 'm') and input_image[i+1] in '0 1 2 3 4 5 6 7 8 9'.split():
-                        filt = input_image[i:i+5]
+                lowercase_img = os.path.basename(input_image.lower())
+                for i in range(len(lowercase_img)):
+                    if lowercase_img[i] == 'f' and (lowercase_img[i+4] == 'w' or lowercase_img[i+4] == 'm') and lowercase_img[i+1] in '0 1 2 3 4 5 6 7 8 9'.split():
+                        filt = lowercase_img[i:i+5].upper()
                         break
 
                 if 'sci' in input_image.lower() or 'drz' in input_image.lower():
