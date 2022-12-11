@@ -181,7 +181,7 @@ class PrepImg:
         
         # get index of reference filter if specified
         else:
-            ref_filt = ref_filt.lower()
+            ref_filt = ref_filt.upper()
             ref_idx = self.filts.index(ref_filt)
 
         # initialize sextractor object
